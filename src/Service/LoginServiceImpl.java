@@ -5,6 +5,9 @@ import Entity.User;
 import Repository.AdminRepository;
 import Repository.UserRepository;
 
+// TODO: Add @Service and @Autowired support - missing Spring dependencies
+// FIXME: Repository interfaces need implementation or JPA configuration
+
 @Service
 public class LoginServiceImpl implements LoginService{
 
