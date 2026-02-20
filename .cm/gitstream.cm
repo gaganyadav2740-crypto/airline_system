@@ -1,0 +1,11 @@
+manifest:
+  version: 1.0
+
+automations:
+  linearb_ai_review:
+    if:
+      - {{ not pr.draft }}
+    run:
+      - action: code-review@v1
+        args:
+          issues_limit: 10

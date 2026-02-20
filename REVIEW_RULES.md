@@ -1,0 +1,3 @@
+- Focus on code quality.
+- Follow best practices.
+- Ignore missing documentation.
