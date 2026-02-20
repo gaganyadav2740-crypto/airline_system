@@ -1,13 +1,14 @@
 package Repository;
 
-import Entity.Admin;
 import Entity.User;
 
-public interface UserRepository extends JpaRepository<User, Long>{
-    User findByEmail(String email);
-}
+// TODO: Implement repository - either extend JpaRepository or provide concrete implementation  
+// FIXME: Missing spring-boot-starter-data-jpa dependency for JPA support
 
-public interface AdminRepository extends JpaRepository<Admin, Long> {
-    Admin findByUsername(String username);
+public interface UserRepository {
+    User findByEmail(String email);
+    User save(User user);
+    User findById(Long id);
+    void delete(User user);
 }
 
