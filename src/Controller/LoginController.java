@@ -2,11 +2,13 @@ package Controller;
 
 import DTO.AdminLoginRequest;
 import DTO.UserLoginRequest;
+import DTO.LoginResponse;
 import Service.LoginService;
-
-// TODO: CRITICAL - Add Spring Boot dependencies to resolve @RestController, @RequestMapping, @PostMapping, @RequestBody, @Autowired
-// Missing: spring-boot-starter-web in pom.xml or build.gradle
-// Issue: All Spring annotations cannot be resolved - build system configuration required
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/login")
@@ -16,13 +18,15 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("/user")
-    public String userLogin(@RequestBody UserLoginRequest request) {
-        return loginService.userLogin(request.getEmail(), request.getPassword());
+    public ResponseEntity<LoginResponse> userLogin(@Valid @RequestBody UserLoginRequest request, HttpServletRequest httpRequest) {
+        LoginResponse response = loginService.userLogin(request.getEmail(), request.getPassword(), httpRequest);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/admin")
-    public String adminLogin(@RequestBody AdminLoginRequest request) {
-        return loginService.adminLogin(request.getUsername(), request.getPassword());
+    public ResponseEntity<LoginResponse> adminLogin(@Valid @RequestBody AdminLoginRequest request, HttpServletRequest httpRequest) {
+        LoginResponse response = loginService.adminLogin(request.getUsername(), request.getPassword(), httpRequest);
+        return ResponseEntity.ok(response);
     }
 }
 
